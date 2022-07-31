@@ -1,0 +1,448 @@
+/*reset css*/
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+
+/*Khai báo fonts*/
+@font-face {
+	font-family: Lato-Regular;
+	src:url(../fonts/Lato/Lato-Regular.ttf);
+}
+@font-face {
+	font-family: Lato-Light;
+	src:url(../fonts/Lato/Lato-Light.ttf);
+}
+@font-face {
+	font-family: Lato-Bold;
+	src:url(../fonts/Lato/Lato-Bold.ttf);
+}
+@font-face {
+	font-family: Lato-LightItalic;
+	src:url(../fonts/Lato/Lato-LightItalic.ttf);
+}
+@font-face {
+	font-family: Lato-Italic;
+	src:url(../fonts/Lato/Lato-Italic.ttf);
+}
+
+/*Khai báo biến*/
+:root {
+	--primary-color: #444;
+	--second-color: #fff;
+	--third-color: #1bbc9b;
+	--fourth-color: #16a086;
+	scroll-behavior: smooth;/*làm chậm việc dịch chuyển của con cuộn */
+}
+
+/*BODY*/
+/*Định dạng chung, mang tính chất kế thừa*/
+body {
+	font-family: Lato-Regular;
+	color:var(--primary-color);
+}
+
+/*common*/
+button {
+	font-size: 14px;
+	background-color: var(--third-color);
+	color: var(--second-color);
+	font-family: Lato-Bold;
+	height: 37px;
+	padding-left: 13px;
+	padding-right: 13px;
+	border:none;
+	letter-spacing: 2px;/* các kí tự giãn ra */
+}
+
+/*MENU - HEADER*/
+/*Lưu ý dấu phẩy giữa 2 class*/
+.navbar-light .navbar-nav .nav-link {
+	color:var(--primary-color);
+	padding-left: 12px;
+	padding-right: 12px;
+	font-size: 14px;
+	margin-left: 7px;
+}
+
+/*first-child*/
+.navbar-light .navbar-nav li:first-child .nav-link {
+	margin-left: 0px;
+	/*Làm mất đi phần tử dư*/
+
+}
+
+/*dùng active để khi vừa vào trang sẽ hiện hover*/
+.navbar-light .navbar-nav .active.nav-link,
+.navbar-light .navbar-nav .nav-link:hover {
+	background-color: var(--third-color);
+	color:var(--second-color);/*nếu màu hex có các kí tự giống mau thì có thể rút gọn lại 3 kí tự */
+}
+
+.navbar-light {
+	padding-top: 19px;
+	padding-bottom: 19px;
+}
+
+.navbar.fixed-top {
+	background-color: rgba(255, 255, 0, 0.8);
+	/*để làm gọn lại thanh ngang khi cuộn chuột*/
+	padding-top: 0;
+	padding-bottom: 0;
+	animation: .5s menuAnimation;/* .5 là 0.5 */
+}
+
+@keyframes menuAnimation {
+	from {
+		transform: translateY(-100%);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+.dummy-padding-top {
+	padding-top: 95px;
+}
+
+
+/*MAIN*/
+/*HOME*/
+.home {
+	padding-top: 71px;
+	padding-bottom: 82px;
+	background-image: url(../images/banner.jpg);
+	background-size: cover;
+	background-position: center;
+	color:var(--second-color);
+}
+
+.home h1 {
+	font-family: Lato-Light;
+	font-size:55px;
+	margin-bottom: 28px;
+}
+
+.home span {
+	font-family: Lato-Bold;
+}
+
+.home p {
+	font-family: Lato-Light;
+	font-size: 18px;
+	margin-bottom: 46px;
+	max-width: 576px;
+	/*575 nên thêm 1px để chữ xuong dòng*/
+	margin:auto;
+	margin-bottom: 46px;
+}
+
+.home button {
+	font-size: 14px;
+	background-color: var(--third-color);
+	color: var(--second-color);
+	font-family: Lato-Bold;
+	height: 37px;
+	padding-left: 13px;
+	padding-right: 13px;
+	border:none;
+	letter-spacing: 2px;/* các kí tự giãn ra */
+	margin-bottom: 42px;
+}
+
+/*PORTFOLIO*/
+.portfolio {
+	padding-top: 50px;
+	/*61px -34px = 27px*/
+	padding-bottom: 27px;
+}
+
+.portfolio > .row {
+	max-width: 961px;
+	margin:auto;
+}
+
+.portfolio h2{
+	font-size: 28px;
+	margin-bottom: 11px;
+}
+
+.portfolio p{
+	font-size: 16px;
+	margin-bottom: 36px;
+}
+
+.portfolio button{
+	margin-bottom: 45px;
+	margin-left: 8px;
+	margin-right: 8px;
+}
+
+.portfolio button.active {
+	background-color: var(--fourth-color);
+}
+
+.portfolio img {
+	
+
+}
+
+.portfolio .box {
+	background-color: red;
+	position: relative;
+	margin-bottom: 34px;/*để cách với cái phần tử khác */
+	display: inline-block;/*để phần tử phụ thuộc vào nội dunng của overlay để vừa với kích thước của phần tử img*/
+
+
+}
+
+.portfolio .box .overlay {
+	background-image: url(../images/hover.png);
+	position: absolute;
+	top:0;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: var(--second-color);
+	/*opacity: 0;    /*ẩn overlay*/
+	transform: scale(0);/* cách khác để ẩn */
+	transition: 1s ease;
+	pointer-events: none;/*vì có sự kiện truyền */
+}
+
+.portfolio .box:hover .overlay {
+	/*opacity: 1; */   /*hiện overlay */
+	transform: scale(1);/*hiện lên 100% */
+}
+.portfolio .box .overlay span:nth-of-type(1) {
+	line-height: 45px;
+	text-align: center;
+	width: 43px;
+	background-image: url(../images/search.png);
+	display: inline-block;
+	border-radius: 50%;
+	font-size: 21px;
+	margin-bottom: 18px;
+
+}
+
+.portfolio .box .overlay span:nth-of-type(2) {
+	font-size: 18px;
+}
+
+.portfolio .box .overlay span:nth-of-type(3) {
+	font-size: 14px;
+	
+}
+
+/*ABOUT*/
+.about {
+	padding-top: 53px;
+	/*74px - 20px = 54px*. 20px ở margin botton của box info*/
+	padding-bottom: 54px;
+	background-color: var(--fourth-color);
+}
+
+.about > .row {
+	max-width: 842px;
+	margin:auto;
+}
+
+.about h2 {
+	font-size: 28px;
+	margin-bottom: 11px;
+	color: var(--second-color);
+}
+
+.about > p {
+	font-size: 14px;
+	margin-bottom: 43px;
+	color: var(--second-color);
+}
+
+.about .box-info {
+	padding-top: 18px;
+	padding-bottom: 19px;
+	background-color: var(--second-color);
+	width: 220px;
+	margin: auto;
+	margin-bottom: 20px;/*cách dòng giữa các khối */
+}
+
+.about .box-info h3 {
+	font-size: 18px;
+	margin-bottom: 4px;
+}
+
+.about .box-info em {
+	display: inline-block;
+	font-size: 14px;
+	font-family:Lato-Italic;
+	margin-bottom: 19px;/*để sử dụng thuộc tính cần thay đổi thành inline-block*/
+}
+
+.about .box-info p {
+	font-size: 14px;
+	text-align: left;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.about .box {
+	position: relative;
+}
+
+.about .box .overlay {
+	position: absolute;
+	top: 50%;
+	left:50%;
+	transform: translate(-50%, -50%);
+	background-image:url(../images/hover.png);/*vì là đuôi png nên có độ trong suốt */
+	width: 180px;
+	height: 48px;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;/*cách đều giữa cách phần tử */
+	opacity: 0;
+	transition: 1s ease;
+
+}
+
+.about .box:hover .overlay {
+	opacity: 1;
+}
+/* vì thẻ a là 1 block nên k nhận kế thừa nên phải chị định riêng màu và định dạng  cho nó*/
+.about .box .overlay a {
+	color: var(--second-color);
+	font-size: 29px;
+
+}
+
+
+
+
+
+/*CONTACT*/
+.contact {
+	padding-top: 49px;
+	padding-bottom: 60px;
+}
+
+.contact > .row {
+	max-width: 940px;
+	margin: auto;
+
+}
+
+.contact h2 {
+	font-size: 28px;
+	margin-bottom: 11px;
+}
+.contact > p {
+	font-size: 14px;
+	margin-bottom: 51px;
+}
+.contact input[type=text],
+.contact input[type=email],
+.contact textarea {
+	border: 2px solid #bec3c7;
+	border-radius: 0;
+}
+
+.contact input[type=text],
+.contact input[type=email] {
+	height: 47px;
+	margin-bottom: 22px;
+}
+
+.contact textarea {
+	height: 153px;
+	margin-bottom: 23px;
+}
+
+.contact ::placeholder {
+	font-size: 14px;
+	font-family: Lato-Italic;
+	color: #999;
+}
+
+.contact button {
+	padding-left: 29px;
+	padding-right: 29px;
+}
+
+.contact h3 {
+	font-size: 14px;
+	margin-bottom: 20px;
+}
+
+.contact address {
+	font-size: 14px;
+	margin-bottom: 24px;
+	display: flex;
+}
+/*mặc định span là inline nhưng vì có displayflex nên thẻ chuyển thành block*/
+.contact address span {
+	margin-left: 5px;
+	margin-top: -3px;
+}
+
+.contact address ~ p {
+	font-size: 14px;
+	margin-bottom: 18px;
+}
+
+footer {
+	background-color: #2d3e50;
+	color:var(--second-color);
+	font-size: 14px;
+	height: 87px;
+	display: flex;
+	align-items: center;
+}
+
+footer .back-to-top {
+	position: fixed;
+	bottom: 20px;
+	right: 42px;
+	background-color: var(--third-color);
+	width: 44px;
+	line-height: 44px;
+	color: var(--second-color);
+	text-align: center;
+}
+
+
+@media (max-width: 768px) {
+	.dummy-padding-top {
+		padding-top: 57px;
+	}
+	.navbar-collapse {
+		align-items: center;
+		position: absolute;
+		top: 100%;/*cách từ cha của thẻ ul 1 thẻ div */
+		width: 100%;/*Vì khi sử dụng position absolute thì các thẻ sẽ từ thẻ block sang inline-block nên phải xét lại độ dài cho phần tử */
+		left: 0;
+		background-color: rgba(208,208,208,0.8);
+	}
+
+	.navbar-light .navbar-nav .nav-link {
+		margin-left: 0;
+		margin-bottom: 5px;/*tránh bị dính vào background-color*/
+	}
+
+	.navbar-light .navbar-nav li:last-child .nav-link {
+		margin-bottom: 0;
+	}
+
+	.navbar-light {
+		padding-top: 0px;
+		padding-bottom: 0px;
+}
+}
